@@ -22,10 +22,13 @@ const init = () => {
 }
 
 const storeCities = (str) => {
-  if (recentSearchesArr.length === 5) {
+  
+  if (!(recentSearchesArr.includes(str)) && recentSearchesArr.length === 5) {
     recentSearchesArr.shift()
+    recentSearchesArr.push(str)
+  } else if (!(recentSearchesArr.includes(str))) {
+    recentSearchesArr.push(str)
   }
-  recentSearchesArr.push(str)
   localStorage.setItem('cities', JSON.stringify(recentSearchesArr))
 }
 
