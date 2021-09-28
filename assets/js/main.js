@@ -5,6 +5,7 @@ const searchBtn = document.querySelector('.search-btn'),
   forecastContainer = document.querySelector('.weather-forecast')
 apiKey = '35d13417d0c1faaaddc8386417eb0ec6'
 let cityData = {},
+  recentSearchesArr = [],
   cityLat,
   cityLon
 
@@ -12,6 +13,9 @@ const getAndShowData = (ev) => {
   ev.preventDefault()
   while (weatherTodayConatiner.firstChild) {
     weatherTodayConatiner.removeChild(weatherTodayConatiner.firstChild)
+  }
+  while (forecastContainer.firstChild) {
+    forecastContainer.removeChild(forecastContainer.firstChild)
   }
   let cityName = trimAndCapitalizeCity(inputEl.value),
     latLonUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`
@@ -68,7 +72,7 @@ const displayToday = () => {
 }
 
 const displayForecast = () => {
-  for (let i = 0; i < 5; i++) {
+  for (let i = 1; i < 6; i++) {
     let newDivContainer = document.createElement('div'),
       newDiv1 = document.createElement('div'),
       newDiv2 = document.createElement('div'),
