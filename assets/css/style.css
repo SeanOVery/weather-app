@@ -5,6 +5,7 @@
 :root {
   --bg-main: rgba(45, 45, 45, 0.8);
   --bg-dark: rgba(45, 45, 45, 1);
+  --btn-color: rgb(60, 60, 60);
 }
 
 h1,
@@ -56,7 +57,55 @@ body {
   padding: 1.5rem 2.5rem;
   display: flex;
   justify-content: center;
+  align-items: center;
   border-radius: 25px;
+}
+
+.search-bar {
+}
+
+.search-city-heading {
+  padding: 1rem 0;
+  margin-right: 1rem;
+}
+
+#city-search {
+  padding: 1rem 2rem;
+  border-radius: 5px;
+}
+
+.search-btn {
+  padding: 1rem 2rem;
+  margin-left: 1rem;
+  background-color: var(--btn-color);
+  color: white;
+  border-radius: 8px;
+}
+
+.history-bar {
+  flex-direction: column;
+}
+
+.previous-cities-heading {
+  margin-bottom: 1rem;
+}
+
+.search-history-list {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+  margin: 0;
+}
+
+.search-item-btn {
+  padding: 1rem 2rem;
+  margin: 0 1rem;
+  background-color: var(--btn-color);
+  color: white;
+  border-radius: 8px;
 }
 
 .results-container {

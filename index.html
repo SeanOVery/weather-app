@@ -11,8 +11,19 @@
     <header class="header-container">
       <h1 class="title-bar">Weather App</h1>
       <nav class="nav-container">
-        <div class="search-bar">Search</div>
-        <div class="history-bar">History</div>
+        <div class="search-bar">
+          <h1 class="search-city-heading">Search by city:</h1>
+          <input type="text" name="city-search" id="city-search">
+          <button type="submit" class="search-btn">Search</button>
+        </div>
+        <div class="history-bar">
+          <h1 class="previous-cities-heading">Previous Cities</h1>
+          <ul class="search-history-list">
+            <li><button class="search-item-btn">Search Item</button></li>
+            <li><button class="search-item-btn">Search Item</button></li>
+            <li><button class="search-item-btn">Search Item</button></li>
+          </ul>
+        </div>
       </nav>
     </header>
     <main class="results-container">
