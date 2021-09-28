@@ -2,7 +2,8 @@ const searchBtn = document.querySelector('.search-btn'),
   inputEl = document.querySelector('#city-search'),
   weatherTodayConatiner = document.querySelector('.weather-today'),
   resultsContainer = document.querySelector('.results-container'),
-  apiKey = '35d13417d0c1faaaddc8386417eb0ec6'
+  forecastContainer = document.querySelector('.weather-forecast')
+apiKey = '35d13417d0c1faaaddc8386417eb0ec6'
 let cityData = {},
   cityLat,
   cityLon
@@ -39,6 +40,7 @@ const fromLatLong = () => {
     .then((data) => {
       cityData = data
       displayToday()
+      displayForecast()
     })
 }
 
@@ -56,15 +58,38 @@ const displayToday = () => {
   )
   newIcon.setAttribute('alt', cityData.current.weather[0].main)
   newDiv1.classList.add('city-today')
-  newDiv1.textContent = `${trimAndCapitalizeCity(inputEl.value)} ${moment
-    .unix(cityData.current.dt, 'X')
-    .format('MM/DD/YYYY')}`
+  newDiv1.textContent = `${trimAndCapitalizeCity(inputEl.value)} ${moment.unix(cityData.current.dt, 'X').format('MM/DD/YYYY')}`
   newDiv1.append(newIcon)
   newDiv2.textContent = `Temperature: ${cityData.current.temp.toFixed()} °F`
   newDiv3.textContent = `Wind: ${cityData.current.wind_speed.toFixed(1)} MPH`
   newDiv4.textContent = `Humidity: ${cityData.current.humidity.toFixed()}%`
   newDiv5.textContent = `UV Index: ${cityData.current.uvi.toFixed(1)}`
   weatherTodayConatiner.append(newDiv1, newDiv2, newDiv3, newDiv4, newDiv5)
+}
+
+const displayForecast = () => {
+  for (let i = 0; i < 5; i++) {
+    let newDivContainer = document.createElement('div'),
+      newDiv1 = document.createElement('div'),
+      newDiv2 = document.createElement('div'),
+      newDiv3 = document.createElement('div'),
+      newDiv4 = document.createElement('div'),
+      newDiv5 = document.createElement('div'),
+      newIcon = document.createElement('img')
+    newDivContainer.classList.add('forecast-card')
+    newDiv1.textContent = moment.unix(cityData.daily[i].dt).format('MM/DD/YYYY')
+    newIcon.setAttribute(
+      'src',
+      `http://openweathermap.org/img/wn/${cityData.daily[i].weather[0].icon}@2x.png`
+    )
+    newIcon.setAttribute('alt', cityData.daily[i].weather[0].main)
+    newDiv3.textContent = `Temperature: ${cityData.daily[i].temp.day.toFixed()} °F`
+    newDiv4.textContent = `Wind: ${cityData.daily[i].wind_speed.toFixed(1)} MPH`
+    newDiv5.textContent = `Humidity: ${cityData.daily[i].humidity.toFixed()}%`
+    newDiv2.append(newIcon)
+    newDivContainer.append(newDiv1, newDiv2, newDiv3, newDiv4, newDiv5)
+    forecastContainer.append(newDivContainer)
+  }
 }
 
 searchBtn.addEventListener('click', getAndShowData)
