@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Weather App</title>
 </head>
@@ -27,13 +26,8 @@
         </div>
       </nav>
     </header>
-    <main class="results-container">
+    <main class="results-container hide">
       <section class="weather-today">
-        <div class="city-today">Atlanta (09/28/2021) Icon</div>
-        <div class="temp-today">Temperature: 69F</div>
-        <div class="wind-today">Wind: 7 MPH</div>
-        <div class="humidity-today">Humidity: 58%</div>
-        <div class="uv-index-today">UV Index: 1.2</div>
       </section>
       <section class="weather-forecast">
         <div class="forecast-card">
@@ -45,7 +39,7 @@
         </div>
         <div class="forecast-card">
           <div class="forecast-date">09/29/2021</div>
-          <div class="forecast-icon">Icon</div>
+          <div class="forecast-icon"><img src="http://openweathermap.org/img/wn/10d@2x.png" alt=""></div>
           <div class="forecast-temp">Temperature: 69F</div>
           <div class="forecast-wind">Wind: 7 MPH</div>
           <div class="forecast-humidity">Humidity: 58%</div>
@@ -73,6 +67,7 @@
         </div>
       </section>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./assets/js/main.js"></script>
 </body>
 </html>
