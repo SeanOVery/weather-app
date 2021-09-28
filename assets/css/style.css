@@ -196,6 +196,10 @@ body {
     margin-top: 2.5rem;
   }
 
+  .search-bar {
+    flex-direction: column;
+  }
+
   .weather-forecast {
     width: 90vw;
     flex-direction: column;
@@ -218,5 +222,20 @@ body {
 
   .weather-forecast {
     margin-bottom: 5rem;
+  }
+
+  .search-history-list li:nth-last-of-type(3),
+  .search-history-list li:nth-last-of-type(4),
+  .search-history-list li:nth-last-of-type(5) {
+    display: none;
+  }
+
+  .search-city-heading {
+    margin: 1rem 0;
+    padding: 0;
+  }
+
+  .search-btn {
+    margin: 1rem 0;
   }
 }

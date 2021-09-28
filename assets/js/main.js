@@ -3,6 +3,7 @@ const searchBtn = document.querySelector('.search-btn'),
   weatherTodayConatiner = document.querySelector('.weather-today'),
   resultsContainer = document.querySelector('.results-container'),
   forecastContainer = document.querySelector('.weather-forecast'),
+  recentSearchesContainer = document.querySelector('.search-history-list'),
   apiKey = '35d13417d0c1faaaddc8386417eb0ec6'
 
 let cityData = {},
@@ -10,15 +11,38 @@ let cityData = {},
   cityLat,
   cityLon
 
+
+const init = () => {
+  let storedCities = JSON.parse(localStorage.getItem('cities'))
+
+  if (storedCities !== null) {
+    recentSearchesArr = storedCities
+    displayRecentSearches()
+  }
+}
+
+const storeCities = (str) => {
+  if (recentSearchesArr.length === 5) {
+    recentSearchesArr.shift()
+  }
+  recentSearchesArr.push(str)
+  localStorage.setItem('cities', JSON.stringify(recentSearchesArr))
+}
+
 const getAndShowData = () => {
   let cityName = trimAndCapitalizeCity(inputEl.value),
   latLonUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`
+
+  storeCities(cityName)
 
   while (weatherTodayConatiner.firstChild) {
     weatherTodayConatiner.removeChild(weatherTodayConatiner.firstChild)
   }
   while (forecastContainer.firstChild) {
     forecastContainer.removeChild(forecastContainer.firstChild)
+  }
+  while (recentSearchesContainer.firstChild) {
+    recentSearchesContainer.removeChild(recentSearchesContainer.firstChild)
   }
 
   fetch(latLonUrl)
@@ -48,6 +72,7 @@ const fromLatLong = () => {
       cityData = data
       displayToday()
       displayForecast()
+      displayRecentSearches()
     })
 }
 
@@ -98,5 +123,24 @@ const displayForecast = () => {
 
   }
 }
+
+const displayRecentSearches = () => {
+  for (let i = 0; i < recentSearchesArr.length; i++) {
+    const newLi = document.createElement('li'),
+      newButton = document.createElement('button')
+
+    newButton.classList.add('search-item-btn')
+    newButton.textContent = recentSearchesArr[i]
+    newButton.addEventListener('click', () => {
+      inputEl.value = newButton.textContent
+      getAndShowData()
+    })
+
+    newLi.append(newButton)
+    recentSearchesContainer.append(newLi)
+  }
+}
+
+init()
 
 searchBtn.addEventListener('click', getAndShowData)
