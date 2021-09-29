@@ -11,7 +11,6 @@ let cityData = {},
   cityLat,
   cityLon
 
-
 const init = () => {
   let storedCities = JSON.parse(localStorage.getItem('cities'))
 
@@ -22,7 +21,6 @@ const init = () => {
 }
 
 const storeCities = (str) => {
-  
   if (!(recentSearchesArr.includes(str)) && recentSearchesArr.length === 5) {
     recentSearchesArr.shift()
     recentSearchesArr.push(str)
