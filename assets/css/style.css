@@ -264,7 +264,7 @@ body {
     flex-direction: column;
   }
 
-  .search-history-list li:nth-of-type(4) button {
+  .search-history-list li:first-of-type button {
     margin-left: 0;
   }
   
@@ -308,5 +308,12 @@ body {
   .search-btn {
     margin: 1rem 0;
     padding: 1rem 6rem;
+  }
+
+}
+
+@media (max-height: 800px) {
+  .results-container {
+    height: auto;
   }
 }
