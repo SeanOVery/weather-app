@@ -87,7 +87,7 @@ const displayToday = () => {
   let uvi = cityData.current.uvi
 
   resultsContainer.classList.remove('hide')
-  newIcon.setAttribute('src', `http://openweathermap.org/img/wn/${cityData.current.weather[0].icon}.png`)
+  newIcon.setAttribute('src', `https://openweathermap.org/img/wn/${cityData.current.weather[0].icon}.png`)
   newIcon.setAttribute('alt', cityData.current.weather[0].main)
   newDiv1.classList.add('city-today')
   newDiv1.textContent = `${trimAndCapitalizeCity(inputEl.value)} ${moment.unix(cityData.current.dt, 'X').format('MM/DD/YYYY')}`
@@ -121,7 +121,7 @@ const displayForecast = () => {
       newIcon = document.createElement('img')
 
     newDivContainer.classList.add('forecast-card')
-    newIcon.setAttribute('src', `http://openweathermap.org/img/wn/${cityData.daily[i].weather[0].icon}@2x.png`)
+    newIcon.setAttribute('src', `https://openweathermap.org/img/wn/${cityData.daily[i].weather[0].icon}@2x.png`)
     newIcon.setAttribute('alt', cityData.daily[i].weather[0].main)
     newDiv1.textContent = moment.unix(cityData.daily[i].dt).format('MM/DD/YYYY')
     newDiv3.textContent = `Temperature: ${cityData.daily[i].temp.day.toFixed()} °F`
