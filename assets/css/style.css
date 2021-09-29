@@ -186,6 +186,34 @@ body {
   display: none;
 }
 
+.uvilow {
+  background-color: greenyellow;
+  color: black;
+  padding: 0.5rem 0.5rem;
+  border-radius: 5px;
+}
+
+.uvimid {
+  background-color: yellow;
+  color: black;
+  padding: 0.5rem 0.5rem;
+  border-radius: 5px;
+}
+
+.uvihigh {
+  background-color: orange;
+  color: black;
+  padding: 0.5rem 0.5rem;
+  border-radius: 5px;
+}
+
+.uviveryhigh {
+  background-color: red;
+  color: black;
+  padding: 0.5rem 0.5rem;
+  border-radius: 5px;
+}
+
 @media (max-width: 1600px) {
   .results-container {
     height: 35vh;

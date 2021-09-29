@@ -13,6 +13,7 @@ The goal of this project was to create a weather dashboard where someone can loo
 * Gives weather information for today and a forecast for the next 5 days.
 * Weather data for today includes an icon indicating sunny, cloudy, etc as well as the temperature in °F, the wind speed in MPH, the humidity, and the current UV index.
 * The forecast contains mostly the same data but excludes the UV index.
+* UV index on today's weather data is colored to show severity.
 
 ---
 

@@ -84,6 +84,7 @@ const displayToday = () => {
     newDiv4 = document.createElement('div'),
     newDiv5 = document.createElement('div'),
     newIcon = document.createElement('img')
+  let uvi = cityData.current.uvi
 
   resultsContainer.classList.remove('hide')
   newIcon.setAttribute('src', `http://openweathermap.org/img/wn/${cityData.current.weather[0].icon}.png`)
@@ -94,6 +95,15 @@ const displayToday = () => {
   newDiv3.textContent = `Wind: ${cityData.current.wind_speed.toFixed(1)} MPH`
   newDiv4.textContent = `Humidity: ${cityData.current.humidity.toFixed()}%`
   newDiv5.textContent = `UV Index: ${cityData.current.uvi.toFixed(1)}`
+  if (uvi <= 2) {
+    newDiv5.classList.add('uvilow')
+  } else if (uvi <= 5) {
+    newDiv5.classList.add('uvimid')
+  } else if (uvi <=8) {
+    newDiv5.classList.add('uvihigh')
+  } else {
+    newDiv5.classList.add('uviveryhigh')
+  }
 
   newDiv1.append(newIcon)
   weatherTodayConatiner.append(newDiv1, newDiv2, newDiv3, newDiv4, newDiv5)
