@@ -264,9 +264,11 @@ body {
     flex-direction: column;
   }
 
-  .search-history-list li:first-of-type button {
-    margin-left: 0;
+  .search-history-list {
+    flex-direction: column;
+    padding-left: 0;
   }
+
   
   .weather-forecast {
     width: 90vw;
@@ -291,7 +293,8 @@ body {
   }
 
   .search-history-list li button{
-    padding: 1rem 4rem
+    padding: 1rem 4rem;
+    margin: 1rem 0;
   }
 
   .search-history-list li:nth-last-of-type(3),
