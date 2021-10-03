@@ -11,7 +11,7 @@ let cityData = {},
   recentSearchesArr = [],
   cityLat,
   cityLon
-
+// variable declaration
 const init = () => {
   let storedCities = JSON.parse(localStorage.getItem('cities'))
 
@@ -19,7 +19,7 @@ const init = () => {
     recentSearchesArr = storedCities
     displayRecentSearches()
   }
-}
+}// gets previous searches from local storage and shows them on opening page
 
 const storeCities = (str) => {
   if (!(recentSearchesArr.includes(str)) && recentSearchesArr.length === 5) {
@@ -29,13 +29,16 @@ const storeCities = (str) => {
     recentSearchesArr.push(str)
   }
   localStorage.setItem('cities', JSON.stringify(recentSearchesArr))
-}
+} // I set the max recent search items to 5 so this checks if there are already 5 items or is something has already been searched and based on those parameters updates and saves local storage
+
+const trimAndCapitalizeCity = (str) => {
+  let strTrim = str.trim().toLowerCase()
+  return strTrim.charAt(0).toUpperCase() + strTrim.slice(1)
+} // takes in the users input and cuts it up so it can be used in the api
 
 const getAndShowData = () => {
   let cityName = trimAndCapitalizeCity(inputEl.value),
   latLonUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`
-
-  
 
   while (weatherTodayConatiner.firstChild) {
     weatherTodayConatiner.removeChild(weatherTodayConatiner.firstChild)
@@ -71,12 +74,7 @@ const getAndShowData = () => {
       })
       displayRecentSearches()
     })
-}
-
-const trimAndCapitalizeCity = (str) => {
-  let strTrim = str.trim().toLowerCase()
-  return strTrim.charAt(0).toUpperCase() + strTrim.slice(1)
-}
+} // this is the first api call. The main goal of it is to take the city that was input and convert it to latitude and longitude. It also handles removing the previous search's info with the while loops and throws an error on screen if the user inputs a city that can't be understood and a different error for other possible issues like the openweather api server being down(They said 95% uptime so prob not an issue but who knows)
 
 const fromLatLong = () => {
   let mainCallUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${cityLat}&lon=${cityLon}&units=imperial&exclude=minutely,hourly,alerts&appid=${apiKey}`
@@ -91,7 +89,7 @@ const fromLatLong = () => {
       displayForecast()
       displayRecentSearches()
     })
-}
+} // this takes the lat and lon from the last function and makes the main call to get all the data and runs major functions.
 
 const displayToday = () => {
   const newDiv1 = document.createElement('div'),
@@ -123,7 +121,7 @@ const displayToday = () => {
 
   newDiv1.append(newIcon)
   weatherTodayConatiner.append(newDiv1, newDiv2, newDiv3, newDiv4, newDiv5)
-}
+} // this function creates and shows the date for today's weather in the today card.
 
 const displayForecast = () => {
   for (let i = 1; i < 6; i++) {
@@ -149,7 +147,7 @@ const displayForecast = () => {
     forecastContainer.append(newDivContainer)
 
   }
-}
+} // this function creates and displays the forecast data container and the cards within
 
 const displayRecentSearches = () => {
   for (let i = 0; i < recentSearchesArr.length; i++) {
@@ -166,8 +164,8 @@ const displayRecentSearches = () => {
     newLi.append(newButton)
     recentSearchesContainer.append(newLi)
   }
-}
+} // this function updates the recent searches bar
 
-init()
+init() // run on open
 
-searchBtn.addEventListener('click', getAndShowData)
+searchBtn.addEventListener('click', getAndShowData) // search button event listener
