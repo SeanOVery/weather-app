@@ -214,6 +214,10 @@ body {
   border-radius: 5px;
 }
 
+.hidden {
+  display: none;
+}
+
 @media (max-width: 1600px) {
   .results-container {
     height: 35vh;

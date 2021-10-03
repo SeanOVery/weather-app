@@ -4,6 +4,7 @@ const searchBtn = document.querySelector('.search-btn'),
   resultsContainer = document.querySelector('.results-container'),
   forecastContainer = document.querySelector('.weather-forecast'),
   recentSearchesContainer = document.querySelector('.search-history-list'),
+  errorDialogEl = document.querySelector('#dialog'),
   apiKey = '35d13417d0c1faaaddc8386417eb0ec6'
 
 let cityData = {},
@@ -34,7 +35,7 @@ const getAndShowData = () => {
   let cityName = trimAndCapitalizeCity(inputEl.value),
   latLonUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`
 
-  storeCities(cityName)
+  
 
   while (weatherTodayConatiner.firstChild) {
     weatherTodayConatiner.removeChild(weatherTodayConatiner.firstChild)
@@ -48,12 +49,27 @@ const getAndShowData = () => {
 
   fetch(latLonUrl)
     .then((response) => {
-      return response.json()
+      if (response.status === 200) {
+        storeCities(cityName)
+        return response.json();
+      } else if (response.status === 404) {
+        throw new Error('City not found')
+      } else {
+        throw new Error('Something went wrong');
+      }
     })
     .then((data) => {
       cityLat = data.coord.lat
       cityLon = data.coord.lon
       fromLatLong()
+    })
+    .catch((error) => {
+      errorDialogEl.innerHTML = error
+      $('#dialog').dialog({
+        height: 100,
+        width: 200,
+      })
+      displayRecentSearches()
     })
 }
 
