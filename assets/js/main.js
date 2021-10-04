@@ -86,7 +86,6 @@ const fromLatLong = () => {
     })
     .then((data) => {
       cityData = data
-      
       displayToday()
       displayForecast()
       displayRecentSearches()
