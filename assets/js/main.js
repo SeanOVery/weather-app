@@ -53,6 +53,7 @@ const getAndShowData = () => {
   fetch(latLonUrl)
     .then((response) => {
       if (response.status === 200) {
+        inputEl.value = ''
         storeCities(cityName)
         return response.json();
       } else if (response.status === 404) {
@@ -85,6 +86,7 @@ const fromLatLong = () => {
     })
     .then((data) => {
       cityData = data
+      
       displayToday()
       displayForecast()
       displayRecentSearches()
